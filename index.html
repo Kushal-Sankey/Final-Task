@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Planner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Task Planner</h1>
+        <form class="task-form" onsubmit="addParentTask(); return false;">
+            <h2>Add Parent Task</h2>
+            <label for="parentTaskId">Task ID:</label>
+            <input type="number" min="0" id="parentTaskId" name="parentTaskId">
+    
+            <label for="parentTaskName">Task Name:</label>
+            <input type="text" id="parentTaskName" name="parentTaskName">
+    
+            <label for="parentStartDate">Start Date:</label>
+            <input type="datetime-local" id="parentStartDate" name="parentStartDate">
+    
+            <label for="parentEndDate">End Date:</label>
+            <input type="datetime-local" id="parentEndDate" name="parentEndDate">
+    
+            <label for="parentStatus">Status:</label>
+            <select id="parentStatus" name="parentStatus">
+                <option value="none" selected disabled hidden>Select Status</option>
+                <option value="Completed">Completed</option>
+                <option value="Due-Passed">Due-Passed</option>
+                <option value="In-Progress">In-Progress</option>
+                <option value="Canceled">Canceled</option>
+            </select>
+            <br>
+            <button type="submit">Add Task</button>
+        </form>
+    
+        <div class="task-list">
+            <h2>Task List</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>StartDate</th>
+                        <th>EndDate</th>
+                        <th>Status</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                        <th>SubTask</th>
+                    </tr>
+                </thead>
+                <tbody id="taskTableBody">
+                    <!-- Task rows will be added here dynamically -->
+                </tbody>
+            </table>
+        </div>
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <h2>Edit Task</h2>
+                <label for="editTaskName">Task Name:</label>
+                <input type="text" id="editTaskName">
+                <label for="editTaskStartDate">Start Date:</label>
+                <input type="datetime-local" id="editTaskStartDate">
+                <label for="editTaskEndDate">End Date:</label>
+                <input type="datetime-local" id="editTaskEndDate">
+                <label for="editTaskStatus">Status:</label>
+                <select id="editTaskStatus">
+                    <option value="none" selected disabled hidden>Select Status</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Due-Passed">Due-Passed</option>
+                    <option value="In-Progress">In-Progress</option>
+                    <option value="Canceled">Canceled</option>
+                </select>   
+                
+                <button onclick="saveEditedTask()">Save</button>
+                <button onclick="closeEditedTask()">Close</button>
+            </div>
+        </div>
+        <div id="subtaskModal" class="modal">
+            <div class="modal-content">
+                <h2>Add Subtask</h2>
+                <label for="subTaskName">Subtask Name:</label>
+                <input type="text" id="subTaskName" placeholder="Enter subtask name">
+                <label for="subStartDate">Start Date:</label>
+                <input type="datetime-local" id="subStartDate">
+                <label for="subEndDate">End Date:</label>
+                <input type="datetime-local" id="subEndDate">
+                <label for="subStatus">Status:</label>
+                <select id="subStatus">
+                    <option value="none" selected disabled hidden>Select Status</option>
+                    <option value="In-Progress">In-Progress</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Canceled">Canceled</option>
+                </select>
+                <button onclick="addSubTask()">Add Subtask</button>
+                <button onclick="closeSubtaskModal()">Close</button>
+            </div>
+        </div>
+        
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
